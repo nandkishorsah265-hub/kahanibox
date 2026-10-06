@@ -113,23 +113,30 @@
       margin-bottom: 15px;
     }
 
-    /* REELS STYLE MOBILE-FRIENDLY PLAYER */
+    /* REELS STYLE YOUTUBE PLAYER */
     .video-player {
       background: #000;
       border-radius: 18px;
       overflow: hidden;
       margin: 0 auto 25px auto;
-      max-width: 400px; /* रील्स जैसा वर्टिकल लुक */
+      max-width: 400px;
       border: 1px solid #292932;
       box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     }
 
-    .video-player video {
+    .video-container {
+      position: relative;
       width: 100%;
       height: 550px;
-      object-fit: cover;
-      display: block;
-      background: #000;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
     }
 
     .video-info {
@@ -233,7 +240,7 @@
       .top { flex-wrap: wrap; }
       .search { order: 3; flex-basis: 100%; }
       .cards { grid-template-columns: 1fr; }
-      .video-player video { height: 450px; }
+      .video-container { height: 450px; }
     }
   </style>
 </head>
@@ -263,11 +270,10 @@
     <h2>🎬 KahaniBox Player</h2>
     
     <div class="video-player">
-      <!-- नया वर्किंग वीडियो लिंक -->
-      <video id="mainPlayer" controls loop playsinline>
-        <source src="https://googleapis.com" type="video/mp4">
-        आपका browser video नहीं चला पा रहा है।
-      </video>
+      <div class="video-container">
+        <!-- यूट्यूब लाइव वीडियो प्लेयर -->
+        <iframe id="mainPlayer" src="https://youtube.com" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
       
       <div class="video-info">
         <h2 id="videoTitle">रोशनी का सफर 🌟</h2>
@@ -282,7 +288,7 @@
     <h2>🔥 Trending</h2>
     <div class="cards">
       <div class="card" data-category="video">
-        <div class="thumbnail" onclick="playNewVideo('https://googleapis.com', 'रोशनी का सफर 🌟', 'यह हमारी पहली शानदार शॉर्ट वीडियो कहानी है।')">🎬</div>
+        <div class="thumbnail" onclick="playNewVideo('9No-FiEInLA', 'रोशनी का सफर 🌟', 'यह हमारी पहली शानदार शॉर्ट वीडियो कहानी है।')">🎬</div>
         <div class="card-content">
           <h3>एक छोटी सी कहानी</h3>
           <p>Demo Short Video</p>
@@ -294,7 +300,7 @@
       </div>
 
       <div class="card" data-category="video">
-        <div class="thumbnail" onclick="playNewVideo('https://googleapis.com', 'अधूरी मोहब्बत ❤️', 'क्या दोनों कभी दोबारा मिल पाएंगे?')">❤️</div>
+        <div class="thumbnail" onclick="playNewVideo('dQw4w9WgXcQ', 'अधूरी मोहब्बत ❤️', 'क्या दोनों कभी दोबारा मिल पाएंगे?')">❤️</div>
         <div class="card-content">
           <h3>अधूरी मोहब्बत</h3>
           <p>Demo Story</p>
@@ -357,14 +363,12 @@
       alert("लिंक कॉपी हो गया है! अपने दोस्तों के साथ शेयर करें।");
     }
 
-    function playNewVideo(videoSrc, title, desc) {
+    function playNewVideo(youtubeId, title, desc) {
       document.getElementById('videoTitle').innerText = title;
       document.getElementById('videoDesc').innerText = desc;
-      const video = document.getElementById('mainPlayer');
-      video.src = videoSrc;
-      video.scrollIntoView({ behavior: 'smooth' });
-      video.load();
-      video.play();
+      const player = document.getElementById('mainPlayer');
+      player.src = "https://youtube.com" + youtubeId + "?autoplay=1";
+      document.getElementById('videos').scrollIntoView({ behavior: 'smooth' });
     }
 
     function showCategory(category) {
