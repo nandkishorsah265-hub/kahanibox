@@ -3,9 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>KahaniBox - Short Stories & Videos</title>
-
   <style>
     * {
       box-sizing: border-box;
@@ -115,18 +113,21 @@
       margin-bottom: 15px;
     }
 
-    /* VIDEO PLAYER STYLES */
+    /* REELS STYLE MOBILE-FRIENDLY PLAYER */
     .video-player {
       background: #000;
       border-radius: 18px;
       overflow: hidden;
-      margin-bottom: 25px;
+      margin: 0 auto 25px auto;
+      max-width: 400px; /* रील्स जैसा वर्टिकल लुक */
       border: 1px solid #292932;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
     }
 
     .video-player video {
       width: 100%;
-      max-height: 600px;
+      height: 550px;
+      object-fit: cover;
       display: block;
       background: #000;
     }
@@ -137,11 +138,13 @@
     }
 
     .video-info h2 {
+      font-size: 18px;
       margin-bottom: 8px;
     }
 
     .video-info p {
       color: #aaa;
+      font-size: 14px;
     }
 
     .video-actions {
@@ -157,6 +160,7 @@
       padding: 10px 16px;
       border-radius: 20px;
       cursor: pointer;
+      font-size: 14px;
     }
 
     .video-actions button:hover {
@@ -221,9 +225,7 @@
     }
 
     @media (max-width: 800px) {
-      .cards {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      .cards { grid-template-columns: repeat(2, 1fr); }
       .hero h1 { font-size: 28px; }
     }
 
@@ -231,7 +233,7 @@
       .top { flex-wrap: wrap; }
       .search { order: 3; flex-basis: 100%; }
       .cards { grid-template-columns: 1fr; }
-      .thumbnail { height: 220px; }
+      .video-player video { height: 450px; }
     }
   </style>
 </head>
@@ -255,19 +257,21 @@
     <button onclick="showCategory('video')">🎬 Short Videos</button>
     <button onclick="showCategory('story')">📖 Stories</button>
     <button onclick="showCategory('audio')">🎧 Audio</button>
-    <button onclick="showCategory('trending')">🔥 Trending</button>
   </nav>
 
   <section class="section" id="videos">
-    <h2>🎬 Demo Video Player</h2>
+    <h2>🎬 KahaniBox Player</h2>
+    
     <div class="video-player">
-      <video id="mainPlayer" controls preload="metadata">
-        <source src="https://github.io" type="video/mp4">
+      <!-- नया वर्किंग वीडियो लिंक -->
+      <video id="mainPlayer" controls loop playsinline>
+        <source src="https://googleapis.com" type="video/mp4">
         आपका browser video नहीं चला पा रहा है।
       </video>
+      
       <div class="video-info">
-        <h2 id="videoTitle">Demo Short Video</h2>
-        <p id="videoDesc">यह सिर्फ testing के लिए demo video है।</p>
+        <h2 id="videoTitle">रोशनी का सफर 🌟</h2>
+        <p id="videoDesc">यह हमारी पहली शानदार शॉर्ट वीडियो कहानी है।</p>
         <div class="video-actions">
           <button onclick="likeVideo(this)">♡ Like</button>
           <button onclick="shareVideo()">↗ Share</button>
@@ -277,8 +281,8 @@
 
     <h2>🔥 Trending</h2>
     <div class="cards">
-      <div class="card" data-category="video trending">
-        <div class="thumbnail" onclick="playDemo('रोशनी का सफर', 'यह हमारी पहली ट्रेंडिंग शॉर्ट वीडियो है।')">🎬</div>
+      <div class="card" data-category="video">
+        <div class="thumbnail" onclick="playNewVideo('https://googleapis.com', 'रोशनी का सफर 🌟', 'यह हमारी पहली शानदार शॉर्ट वीडियो कहानी है।')">🎬</div>
         <div class="card-content">
           <h3>एक छोटी सी कहानी</h3>
           <p>Demo Short Video</p>
@@ -289,8 +293,8 @@
         </div>
       </div>
 
-      <div class="card" data-category="video trending">
-        <div class="thumbnail" onclick="playDemo('अधूरी मोहब्बत', 'क्या दोनों कभी दोबारा मिल पाएंगे?')">❤️</div>
+      <div class="card" data-category="video">
+        <div class="thumbnail" onclick="playNewVideo('https://googleapis.com', 'अधूरी मोहब्बत ❤️', 'क्या दोनों कभी दोबारा मिल पाएंगे?')">❤️</div>
         <div class="card-content">
           <h3>अधूरी मोहब्बत</h3>
           <p>Demo Story</p>
@@ -301,7 +305,7 @@
         </div>
       </div>
 
-      <div class="card" data-category="story trending">
+      <div class="card" data-category="story">
         <div class="thumbnail">📖</div>
         <div class="card-content">
           <h3>गाँव का राज</h3>
@@ -313,7 +317,7 @@
         </div>
       </div>
 
-      <div class="card" data-category="audio trending">
+      <div class="card" data-category="audio">
         <div class="thumbnail">🎧</div>
         <div class="card-content">
           <h3>रात की आवाज़</h3>
@@ -353,18 +357,20 @@
       alert("लिंक कॉपी हो गया है! अपने दोस्तों के साथ शेयर करें।");
     }
 
-    function playDemo(title, desc) {
+    function playNewVideo(videoSrc, title, desc) {
       document.getElementById('videoTitle').innerText = title;
       document.getElementById('videoDesc').innerText = desc;
       const video = document.getElementById('mainPlayer');
+      video.src = videoSrc;
       video.scrollIntoView({ behavior: 'smooth' });
+      video.load();
       video.play();
     }
 
     function showCategory(category) {
       const cards = document.querySelectorAll(".card");
       cards.forEach(card => {
-        if (card.dataset.category.includes(category)) {
+        if (card.dataset.category === category) {
           card.style.display = "block";
         } else {
           card.style.display = "none";
