@@ -1,404 +1,404 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KahaniBox - Short Stories & Videos</title>
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #0b0b0f;
-      color: white;
-    }
+<title>KahaniBox</title>
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: #111116;
-      padding: 15px;
-      border-bottom: 1px solid #292932;
-    }
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-    .top {
-      max-width: 1100px;
-      margin: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 15px;
-    }
+body{
+  background:#08080c;
+  color:white;
+  font-family:Arial,sans-serif;
+}
 
-    .logo {
-      font-size: 25px;
-      font-weight: bold;
-      color: #ff3158;
-    }
+header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  background:#111116;
+  padding:14px;
+  border-bottom:1px solid #292932;
+}
 
-    .search {
-      flex: 1;
-      max-width: 450px;
-      background: #202027;
-      border: none;
-      border-radius: 25px;
-      padding: 12px 18px;
-      color: white;
-      outline: none;
-    }
+.top{
+  max-width:900px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
 
-    .hero {
-      max-width: 1100px;
-      margin: 25px auto;
-      padding: 35px 25px;
-      border-radius: 20px;
-      background: linear-gradient(135deg, #291348, #111827);
-    }
+.logo{
+  font-size:24px;
+  font-weight:bold;
+  color:#ff3158;
+}
 
-    .hero h1 {
-      font-size: 36px;
-      margin-bottom: 10px;
-    }
+.search{
+  flex:1;
+  max-width:400px;
+  background:#222229;
+  border:0;
+  outline:0;
+  border-radius:25px;
+  padding:11px 16px;
+  color:white;
+}
 
-    .hero p {
-      color: #c8c8d0;
-      margin-bottom: 20px;
-    }
+.container{
+  max-width:900px;
+  margin:auto;
+  padding:20px 12px;
+}
 
-    .btn {
-      display: inline-block;
-      background: #ff3158;
-      color: white;
-      padding: 12px 20px;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: bold;
-    }
+.video-box{
+  background:#000;
+  border-radius:15px;
+  overflow:hidden;
+  width:100%;
+  aspect-ratio:16/9;
+}
 
-    nav {
-      max-width: 1100px;
-      margin: 20px auto;
-      display: flex;
-      gap: 10px;
-      overflow-x: auto;
-      padding: 0 10px;
-    }
+.video-box iframe{
+  width:100%;
+  height:100%;
+  border:0;
+}
 
-    nav button {
-      white-space: nowrap;
-      background: #1c1c24;
-      color: white;
-      border: 1px solid #30303a;
-      padding: 10px 18px;
-      border-radius: 20px;
-      cursor: pointer;
-    }
+.title{
+  font-size:23px;
+  font-weight:bold;
+  margin-top:18px;
+}
 
-    nav button:hover {
-      background: #ff3158;
-    }
+.info{
+  color:#999;
+  margin-top:8px;
+  font-size:14px;
+}
 
-    .section {
-      max-width: 1100px;
-      margin: 30px auto;
-      padding: 0 10px;
-    }
+.actions{
+  display:flex;
+  gap:12px;
+  margin:18px 0;
+}
 
-    .section h2 {
-      margin-bottom: 15px;
-    }
+.action{
+  background:#202027;
+  border:1px solid #33333d;
+  color:white;
+  padding:11px 18px;
+  border-radius:22px;
+  cursor:pointer;
+}
 
-    /* REELS STYLE YOUTUBE PLAYER */
-    .video-player {
-      background: #000;
-      border-radius: 18px;
-      overflow: hidden;
-      margin: 0 auto 25px auto;
-      max-width: 400px;
-      border: 1px solid #292932;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-    }
+.action:hover{
+  background:#ff3158;
+}
 
-    .video-container {
-      position: relative;
-      width: 100%;
-      height: 550px;
-    }
+.description{
+  background:#15151b;
+  padding:15px;
+  border-radius:12px;
+  color:#ccc;
+  line-height:1.6;
+}
 
-    .video-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-    }
+.section-title{
+  margin-top:35px;
+  margin-bottom:15px;
+}
 
-    .video-info {
-      padding: 15px;
-      background: #15151c;
-    }
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
 
-    .video-info h2 {
-      font-size: 18px;
-      margin-bottom: 8px;
-    }
+.card{
+  background:#15151b;
+  border-radius:12px;
+  overflow:hidden;
+  cursor:pointer;
+}
 
-    .video-info p {
-      color: #aaa;
-      font-size: 14px;
-    }
+.thumb{
+  height:150px;
+  background:linear-gradient(135deg,#41164f,#18235c);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:45px;
+}
 
-    .video-actions {
-      display: flex;
-      gap: 10px;
-      margin-top: 15px;
-    }
+.card-content{
+  padding:12px;
+}
 
-    .video-actions button {
-      background: #24242d;
-      border: none;
-      color: white;
-      padding: 10px 16px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 14px;
-    }
+.card h3{
+  font-size:16px;
+}
 
-    .video-actions button:hover {
-      background: #ff3158;
-    }
+.card p{
+  color:#999;
+  font-size:13px;
+  margin-top:5px;
+}
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-    }
+footer{
+  margin-top:40px;
+  padding:30px;
+  text-align:center;
+  color:#777;
+  background:#111116;
+}
 
-    .card {
-      background: #15151c;
-      border: 1px solid #292932;
-      border-radius: 15px;
-      overflow: hidden;
-    }
+@media(max-width:650px){
 
-    .thumbnail {
-      height: 180px;
-      background: linear-gradient(135deg, #3b1b58, #172554);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 50px;
-      cursor: pointer;
-    }
+  .top{
+    flex-wrap:wrap;
+  }
 
-    .card-content {
-      padding: 14px;
-    }
+  .search{
+    max-width:none;
+    flex-basis:100%;
+    order:3;
+  }
 
-    .card h3 {
-      font-size: 17px;
-      margin-bottom: 8px;
-    }
+  .video-box{
+    aspect-ratio:9/16;
+    max-height:75vh;
+  }
 
-    .card p {
-      color: #9999a5;
-      font-size: 13px;
-      margin-bottom: 12px;
-    }
+  .cards{
+    grid-template-columns:repeat(2,1fr);
+  }
 
-    .actions {
-      display: flex;
-      justify-content: space-between;
-      color: #bbb;
-      font-size: 14px;
-    }
+  .thumb{
+    height:130px;
+  }
 
-    .like {
-      cursor: pointer;
-    }
-
-    footer {
-      margin-top: 50px;
-      padding: 30px;
-      text-align: center;
-      background: #111116;
-      color: #888;
-    }
-
-    @media (max-width: 800px) {
-      .cards { grid-template-columns: repeat(2, 1fr); }
-      .hero h1 { font-size: 28px; }
-    }
-
-    @media (max-width: 500px) {
-      .top { flex-wrap: wrap; }
-      .search { order: 3; flex-basis: 100%; }
-      .cards { grid-template-columns: 1fr; }
-      .video-container { height: 450px; }
-    }
-  </style>
+  .title{
+    font-size:20px;
+  }
+}
+</style>
 </head>
+
 <body>
 
-  <header>
-    <div class="top">
-      <div class="logo">KahaniBox</div>
-      <input class="search" type="search" placeholder="कहानी या वीडियो खोजें..." onkeyup="searchCards(this.value)">
-    </div>
-  </header>
+<header>
+  <div class="top">
 
-  <section class="hero">
-    <h1>अपनी कहानी, अपनी दुनिया 🎬</h1>
-    <p>Original short videos, stories और audio series एक ही जगह।</p>
-    <a href="#videos" class="btn">अभी देखना शुरू करें ▶</a>
-  </section>
-
-  <nav>
-    <button onclick="showAll()">सभी</button>
-    <button onclick="showCategory('video')">🎬 Short Videos</button>
-    <button onclick="showCategory('story')">📖 Stories</button>
-    <button onclick="showCategory('audio')">🎧 Audio</button>
-  </nav>
-
-  <section class="section" id="videos">
-    <h2>🎬 KahaniBox Player</h2>
-    
-    <div class="video-player">
-      <div class="video-container">
-        <!-- यूट्यूब लाइव वीडियो प्लेयर -->
-        <iframe id="mainPlayer" src="https://youtube.com" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-      </div>
-      
-      <div class="video-info">
-        <h2 id="videoTitle">रोशनी का सफर 🌟</h2>
-        <p id="videoDesc">यह हमारी पहली शानदार शॉर्ट वीडियो कहानी है।</p>
-        <div class="video-actions">
-          <button onclick="likeVideo(this)">♡ Like</button>
-          <button onclick="shareVideo()">↗ Share</button>
-        </div>
-      </div>
+    <div class="logo">
+      KahaniBox
     </div>
 
-    <h2>🔥 Trending</h2>
-    <div class="cards">
-      <div class="card" data-category="video">
-        <div class="thumbnail" onclick="playNewVideo('9No-FiEInLA', 'रोशनी का सफर 🌟', 'यह हमारी पहली शानदार शॉर्ट वीडियो कहानी है।')">🎬</div>
-        <div class="card-content">
-          <h3>एक छोटी सी कहानी</h3>
-          <p>Demo Short Video</p>
-          <div class="actions">
-            <span class="like" onclick="like(this)">♡ Like</span>
-            <span>▶ 1.2K</span>
-          </div>
-        </div>
+    <input
+      class="search"
+      placeholder="कहानी खोजें..."
+    >
+
+  </div>
+</header>
+
+
+<main class="container">
+
+  <div class="video-box">
+
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/lMSQd9_ZUxQ"
+      title="KahaniBox Video"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
+
+  </div>
+
+
+  <div class="title">
+    सास की आखिरी निशानी 💍😭
+  </div>
+
+  <div class="info">
+    👁️ 1.2K views • 🎬 Short Story
+  </div>
+
+
+  <div class="actions">
+
+    <button class="action" onclick="likeVideo(this)">
+      ♡ Like
+    </button>
+
+    <button class="action">
+      💬 Comment
+    </button>
+
+    <button class="action" onclick="shareVideo()">
+      ↗ Share
+    </button>
+
+  </div>
+
+
+  <div class="description">
+
+    <b>कहानी:</b><br><br>
+
+    सास की आखिरी निशानी बहू के लिए एक ऐसा राज लेकर आई,
+    जिसकी उसे बिल्कुल उम्मीद नहीं थी। ❤️
+
+    <br><br>
+
+    ऐसी ही original short stories के लिए
+    KahaniBox देखते रहें।
+
+  </div>
+
+
+  <h2 class="section-title">
+    🔥 और कहानियाँ
+  </h2>
+
+
+  <div class="cards">
+
+    <div class="card" onclick="openVideo()">
+
+      <div class="thumb">
+        ❤️
       </div>
 
-      <div class="card" data-category="video">
-        <div class="thumbnail" onclick="playNewVideo('dQw4w9WgXcQ', 'अधूरी मोहब्बत ❤️', 'क्या दोनों कभी दोबारा मिल पाएंगे?')">❤️</div>
-        <div class="card-content">
-          <h3>अधूरी मोहब्बत</h3>
-          <p>Demo Story</p>
-          <div class="actions">
-            <span class="like" onclick="like(this)">♡ Like</span>
-            <span>▶ 980</span>
-          </div>
-        </div>
+      <div class="card-content">
+
+        <h3>अधूरी मोहब्बत</h3>
+
+        <p>
+          Short Story
+        </p>
+
       </div>
 
-      <div class="card" data-category="story">
-        <div class="thumbnail">📖</div>
-        <div class="card-content">
-          <h3>गाँव का राज</h3>
-          <p>एक रहस्यमयी कहानी</p>
-          <div class="actions">
-            <span class="like" onclick="like(this)">♡ Like</span>
-            <span>▶ 760</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="card" data-category="audio">
-        <div class="thumbnail">🎧</div>
-        <div class="card-content">
-          <h3>रात की आवाज़</h3>
-          <p>एक डरावनी audio series</p>
-          <div class="actions">
-            <span class="like" onclick="like(this)">♡ Like</span>
-            <span>▶ 540</span>
-          </div>
-        </div>
-      </div>
     </div>
-  </section>
 
-  <footer>
-    <p>© 2026 KahaniBox</p>
-    <p>Original Stories • Short Videos • Audio Series</p>
-  </footer>
 
-  <script>
-    function like(element) {
-      if (element.innerHTML.includes("♡")) {
-        element.innerHTML = "♥ Liked";
-      } else {
-        element.innerHTML = "♡ Like";
-      }
-    }
+    <div class="card">
 
-    function likeVideo(element) {
-      if (element.innerHTML.includes("♡")) {
-        element.innerHTML = "♥ Liked";
-      } else {
-        element.innerHTML = "♡ Like";
-      }
-    }
+      <div class="thumb">
+        😱
+      </div>
 
-    function shareVideo() {
-      alert("लिंक कॉपी हो गया है! अपने दोस्तों के साथ शेयर करें।");
-    }
+      <div class="card-content">
 
-    function playNewVideo(youtubeId, title, desc) {
-      document.getElementById('videoTitle').innerText = title;
-      document.getElementById('videoDesc').innerText = desc;
-      const player = document.getElementById('mainPlayer');
-      player.src = "https://youtube.com" + youtubeId + "?autoplay=1";
-      document.getElementById('videos').scrollIntoView({ behavior: 'smooth' });
-    }
+        <h3>गाँव का राज</h3>
 
-    function showCategory(category) {
-      const cards = document.querySelectorAll(".card");
-      cards.forEach(card => {
-        if (card.dataset.category === category) {
-          card.style.display = "block";
-        } else {
-          card.style.display = "none";
-        }
-      });
-    }
+        <p>
+          Mystery Story
+        </p>
 
-    function showAll() {
-      const cards = document.querySelectorAll(".card");
-      cards.forEach(card => { card.style.display = "block"; });
-    }
+      </div>
 
-    function searchCards(text) {
-      text = text.toLowerCase();
-      const cards = document.querySelectorAll(".card");
-      cards.forEach(card => {
-        const content = card.innerText.toLowerCase();
-        if (content.includes(text)) {
-          card.style.display = "block";
-        } else {
-          card.style.display = "none";
-        }
-      });
-    }
-  </script>
+    </div>
+
+
+    <div class="card">
+
+      <div class="thumb">
+        🎧
+      </div>
+
+      <div class="card-content">
+
+        <h3>रात की आवाज़</h3>
+
+        <p>
+          Audio Story
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+
+<footer>
+
+  © 2026 KahaniBox
+
+  <br><br>
+
+  Original Stories • Short Videos • Audio Series
+
+</footer>
+
+
+<script>
+
+function likeVideo(button){
+
+  if(button.innerHTML.includes("♡")){
+
+    button.innerHTML="♥ Liked";
+
+  }else{
+
+    button.innerHTML="♡ Like";
+
+  }
+
+}
+
+
+function shareVideo(){
+
+  if(navigator.share){
+
+    navigator.share({
+
+      title:"KahaniBox",
+
+      text:"यह कहानी KahaniBox पर देखें!",
+
+      url:window.location.href
+
+    });
+
+  }else{
+
+    alert("इस page का link copy करके share करें।");
+
+  }
+
+}
+
+
+function openVideo(){
+
+  window.scrollTo({
+
+    top:0,
+
+    behavior:"smooth"
+
+  });
+
+}
+
+</script>
+
 </body>
 </html>
